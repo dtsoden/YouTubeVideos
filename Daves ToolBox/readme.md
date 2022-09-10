@@ -16,3 +16,7 @@ Version History
 ----
 ### --- New in version 1.0.0.14
 In this version, I've added a new hightly customized Header and Footer
+
+----
+### --- New in version 1.0.0.15
+In this version, I've added a control to download attachments from SharePoint Attachments, and Dataverse when a table has enabled attachments - not to be confused with columns Data Type "File"... again this is enabled under properties of a table. FYI: these files are actually stored in the NOTES table and will raise the costs of your Dataverse storage fees over time, so personally I do not recommend doing this and highly recommend Azure Blob Storage over most methods.
