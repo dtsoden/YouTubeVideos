@@ -1,0 +1,113 @@
+swagger: '2.0'
+info:
+  title: OpenAI-Global
+  description: >-
+    This is a GLOBAL Connector meaning you embed the API Key into each of the
+    definitions as a hidden attribute with a default value. To connect to the
+    OpenAI API and use the Power of GPT3, API key must be entered as "Bearer
+    YOUR_API_KEY"
+  version: '2.1'
+  contact:
+    name: David Soden & Robin Rosengrün
+    url: https://DavidSoden.com
+host: api.openai.com
+basePath: /
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /v1/engines/{engine}/completions:
+    post:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: GPT3 Completes your prompt
+      description: GPT3 Completes your prompt
+      operationId: Completion
+      x-ms-visibility: important
+      parameters:
+        - name: engine
+          in: path
+          required: true
+          type: string
+          default: text-davinci-003
+          description: >-
+            The used engine, choose between text-davinci-002/003,
+            text-curie-001, text-babbage-001, text-ada-001
+          x-ms-summary: Engine
+          x-ms-visibility: important
+          enum:
+            - text-davinci-003
+            - text-davinci-002
+            - text-curie-001
+            - text-babbage-001
+            - text-ada-001
+        - name: access-token
+          in: header
+          required: true
+          type: string
+          default: Bearer YOUR_API_KEY_GOES_HERE_AND_IS_HIDDEN
+          description: >-
+            Connect to the OpenAI API and use the Power of GPT3, API key must be
+            entered as "Bearer YOUR_API_KEY"
+          x-ms-summary: Bearer YOUR_API_KEY
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              prompt:
+                type: string
+                description: Text that will be completed by GPT3
+                title: prompt
+                default: >-
+                  What is your favorite animal and why? Tell me also about the
+                  size and weight of this animal.
+              'n':
+                type: integer
+                format: int32
+                description: 'n'
+              best_of:
+                type: integer
+                format: int32
+                description: best_of
+              temperature:
+                type: integer
+                format: int32
+                description: temperature
+              max_tokens:
+                type: integer
+                format: int32
+                description: max_tokens
+              top_p:
+                type: integer
+                format: int32
+                description: top_p
+              frequency_penalty:
+                type: integer
+                format: int32
+                description: frequency_penalty
+              presence_penalty:
+                type: integer
+                format: int32
+                description: presence_penalty
+              user:
+                type: string
+                description: user
+              stop:
+                type: array
+                items:
+                  type: string
+                description: stop
+            required:
+              - prompt
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions: {}
+security: []
+tags: []
