@@ -22,7 +22,103 @@ paths:
       responses:
         default:
           description: default
-          schema: {}
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: id
+              object:
+                type: string
+                description: object
+              created:
+                type: integer
+                format: int32
+                description: created
+              model:
+                type: string
+                description: model
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: text
+                    index:
+                      type: integer
+                      format: int32
+                      description: index
+                    logprobs:
+                      type: string
+                      description: logprobs
+                    finish_reason:
+                      type: string
+                      description: finish_reason
+                description: choices
+              usage:
+                type: object
+                properties:
+                  prompt_tokens:
+                    type: integer
+                    format: int32
+                    description: prompt_tokens
+                  completion_tokens:
+                    type: integer
+                    format: int32
+                    description: completion_tokens
+                  total_tokens:
+                    type: integer
+                    format: int32
+                    description: total_tokens
+                description: usage
+          headers:
+            '{':
+              description: '{'
+              type: string
+            '"cache-control"':
+              description: '"cache-control"'
+              type: string
+            '"content-length"':
+              description: '"content-length"'
+              type: string
+            '"content-type"':
+              description: '"content-type"'
+              type: string
+            '"date"':
+              description: '"date"'
+              type: string
+            '"openai-model"':
+              description: '"openai-model"'
+              type: string
+            '"openai-organization"':
+              description: '"openai-organization"'
+              type: string
+            '"openai-processing-ms"':
+              description: '"openai-processing-ms"'
+              type: string
+            '"openai-version"':
+              description: '"openai-version"'
+              type: string
+            '"strict-transport-security"':
+              description: '"strict-transport-security"'
+              type: string
+            '"vary"':
+              description: '"vary"'
+              type: string
+            '"x-ms-apihub-cached-response"':
+              description: '"x-ms-apihub-cached-response"'
+              type: string
+            '"x-ms-apihub-obo"':
+              description: '"x-ms-apihub-obo"'
+              type: string
+            '"x-request-id"':
+              description: '"x-request-id"'
+              type: string
+            '}':
+              description: '}'
+              type: string
       summary: GPT3 Completes your prompt
       description: GPT3 Completes your prompt
       operationId: Completion
@@ -44,16 +140,6 @@ paths:
             - text-curie-001
             - text-babbage-001
             - text-ada-001
-        - name: access-token
-          in: header
-          required: true
-          type: string
-          default: Bearer YOUR_API_KEY_GOES_HERE_AND_IS_HIDDEN
-          description: >-
-            Connect to the OpenAI API and use the Power of GPT3, API key must be
-            entered as "Bearer YOUR_API_KEY"
-          x-ms-summary: Bearer YOUR_API_KEY
-          x-ms-visibility: internal
         - name: body
           in: body
           required: false
