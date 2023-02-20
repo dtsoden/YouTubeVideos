@@ -70,34 +70,69 @@ paths:
               'n':
                 type: integer
                 format: int32
-                description: 'n'
+                description: How many completions to generate for each prompt
+                title: ''
+                default: 1
               best_of:
                 type: integer
                 format: int32
-                description: best_of
+                description: >-
+                  If set to more than 1, generates multiple completions
+                  server-side and returns the "best". Must be greater than "n".
+                  Use with caution, can consume a lot of tokens.
+                title: ''
+                default: 1
               temperature:
                 type: integer
                 format: int32
-                description: temperature
+                description: >-
+                  Higher values means the model will take more risks. Try 0.9
+                  for more creative applications, and 0 (argmax sampling) for
+                  ones with a well-defined answer. Use this OR top p
+                title: temperature
+                default: 1
               max_tokens:
                 type: integer
                 format: int32
-                description: max_tokens
+                description: >-
+                  One token equals roughly 4 characters of text (up to 4000
+                  tokens between prompt and completion)
+                title: max tokens
+                default: 100
               top_p:
                 type: integer
                 format: int32
-                description: top_p
+                description: >-
+                  An alternative to sampling with temperature, called nucleus
+                  sampling, where the model considers the results of the tokens
+                  with top_p probability mass. So 0.1 means only the tokens
+                  comprising the top 10% probability mass are considered.
+                title: top_p
               frequency_penalty:
                 type: integer
                 format: int32
-                description: frequency_penalty
+                description: >-
+                  Number between -2.0 and 2.0. Positive values penalize new
+                  tokens based on their existing frequency in the text so far,
+                  decreasing the models likelihood to repeat the same line
+                  verbatim.
+                title: frequency penalty
+                default: 0
               presence_penalty:
                 type: integer
                 format: int32
-                description: presence_penalty
+                description: >-
+                  Number between -2.0 and 2.0. Positive values penalize new
+                  tokens based on whether they appear in the text so far,
+                  increasing the models likelihood to talk about new topics.
+                title: presence_penalty
+                default: 0
               user:
                 type: string
-                description: user
+                description: >-
+                  A unique identifier representing your end-user, which will
+                  help OpenAI to monitor and detect abuse
+                title: user
               stop:
                 type: array
                 items:
