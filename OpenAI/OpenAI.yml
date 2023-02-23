@@ -258,16 +258,118 @@ paths:
             required:
               - prompt
       description: DallE2 creates an image from your prompt
+  /v1/moderations:
+    post:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: id
+              model:
+                type: string
+                description: model
+              results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    flagged:
+                      type: boolean
+                      description: flagged
+                    categories:
+                      type: object
+                      properties:
+                        sexual:
+                          type: boolean
+                          description: sexual
+                        hate:
+                          type: boolean
+                          description: hate
+                        violence:
+                          type: boolean
+                          description: violence
+                        self-harm:
+                          type: boolean
+                          description: self-harm
+                        sexual/minors:
+                          type: boolean
+                          description: sexual/minors
+                        hate/threatening:
+                          type: boolean
+                          description: hate/threatening
+                        violence/graphic:
+                          type: boolean
+                          description: violence/graphic
+                      description: categories
+                    category_scores:
+                      type: object
+                      properties:
+                        sexual:
+                          type: number
+                          format: float
+                          description: sexual
+                        hate:
+                          type: number
+                          format: float
+                          description: hate
+                        violence:
+                          type: number
+                          format: float
+                          description: violence
+                        self-harm:
+                          type: number
+                          format: float
+                          description: self-harm
+                        sexual/minors:
+                          type: number
+                          format: float
+                          description: sexual/minors
+                        hate/threatening:
+                          type: number
+                          format: float
+                          description: hate/threatening
+                        violence/graphic:
+                          type: number
+                          format: float
+                          description: violence/graphic
+                      description: category_scores
+                description: results
+      summary: Moderation
+      description: >-
+        Given a input text, outputs if the model classifies it as violating
+        OpenAI's content policy.
+      operationId: Moderation
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              input:
+                type: string
+                description: input
+                title: ''
+                x-ms-visibility: important
+                default: I will kill them
+            required:
+              - input
+            x-ms-visibility: important
+          x-ms-visibility: important
 definitions: {}
 parameters: {}
 responses: {}
-securityDefinitions:
-  API Key:
-    type: apiKey
-    in: header
-    name: Authorization
-security:
-  - API Key: []
+securityDefinitions: {}
 tags: []
 x-ms-connector-metadata:
   - propertyName: Website
