@@ -366,6 +366,88 @@ paths:
               - input
             x-ms-visibility: important
           x-ms-visibility: important
+  /v1/edits:
+    post:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              object:
+                type: string
+                description: object
+              created:
+                type: integer
+                format: int32
+                description: created
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: text
+                    index:
+                      type: integer
+                      format: int32
+                      description: index
+                description: choices
+              usage:
+                type: object
+                properties:
+                  prompt_tokens:
+                    type: integer
+                    format: int32
+                    description: prompt_tokens
+                  completion_tokens:
+                    type: integer
+                    format: int32
+                    description: completion_tokens
+                  total_tokens:
+                    type: integer
+                    format: int32
+                    description: total_tokens
+                description: usage
+      summary: Edits
+      description: >-
+        Given a prompt and an instruction, the model will return an edited
+        version of the prompt.
+      operationId: Edits
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              model:
+                type: string
+                description: model
+                title: Model
+                default: text-davinci-edit-001
+                x-ms-visibility: internal
+              input:
+                type: string
+                description: The input text to use as a starting point for the edit.
+                title: Input
+                default: What day of the wek is it?
+              instruction:
+                type: string
+                description: The instruction that tells the model how to edit the prompt.
+                title: Intstruction
+                default: Fix the spelling mistakes
+            required:
+              - input
+              - instruction
+              - model
 definitions: {}
 parameters: {}
 responses: {}
