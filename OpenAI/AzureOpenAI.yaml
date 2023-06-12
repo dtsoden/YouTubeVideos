@@ -14,7 +14,7 @@ schemes:
 consumes: []
 produces: []
 paths:
-  /cnx-dav003/completions:
+  /<<YOUR MODEL NAME>>/completions:
     post:
       responses:
         default:
