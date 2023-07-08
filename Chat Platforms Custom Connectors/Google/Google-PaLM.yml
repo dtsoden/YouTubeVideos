@@ -1,0 +1,124 @@
+swagger: '2.0'
+info:
+  title: Google PaLM
+  description: ''
+  version: '1.0'
+host: generativelanguage.googleapis.com
+basePath: /v1beta2/
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /models:
+    get:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              models:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: name
+                    version:
+                      type: string
+                      description: version
+                    displayName:
+                      type: string
+                      description: displayName
+                    description:
+                      type: string
+                      description: description
+                    inputTokenLimit:
+                      type: integer
+                      format: int32
+                      description: inputTokenLimit
+                    outputTokenLimit:
+                      type: integer
+                      format: int32
+                      description: outputTokenLimit
+                    supportedGenerationMethods:
+                      type: array
+                      items:
+                        type: string
+                      description: supportedGenerationMethods
+                    temperature:
+                      type: number
+                      format: float
+                      description: temperature
+                    topP:
+                      type: number
+                      format: float
+                      description: topP
+                    topK:
+                      type: integer
+                      format: int32
+                      description: topK
+                description: models
+      summary: Get Models
+      operationId: GetModels
+      x-ms-visibility: important
+      parameters:
+        - name: x-goog-api-key
+          in: header
+          required: true
+          type: string
+          default: YOUR-API-KEY-HERE
+          x-ms-visibility: internal
+      description: Gets a List of all available Models
+  /models/text-bison-001:generateText:
+    post:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Completion
+      description: Prompt text completion -> text-bison-001
+      operationId: Completion
+      x-ms-visibility: important
+      parameters:
+        - name: x-goog-api-key
+          in: header
+          required: true
+          type: string
+          default: YOUR-API-KEY-HERE
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              prompt:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    description: text
+                    title: ''
+                    default: Write a story about a magic backpack
+                    x-ms-visibility: important
+                description: prompt
+              temperature:
+                type: number
+                format: float
+                description: temperature
+                title: ''
+                x-ms-visibility: important
+                default: 0.7
+            x-ms-visibility: important
+            required:
+              - temperature
+          x-ms-visibility: important
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions: {}
+security: []
+tags: []

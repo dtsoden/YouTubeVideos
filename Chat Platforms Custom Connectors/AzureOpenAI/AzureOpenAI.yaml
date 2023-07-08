@@ -1,0 +1,239 @@
+swagger: '2.0'
+info:
+  title: AzureOpenAI
+  description: >-
+    Connect to the Azure OpenAI API and use the Power of GPT DAVINCI003.
+  version: '1.0'
+  contact:
+    name: David Soden
+    url: https://DavidSoden.com
+host: <<YOURNAME_HERE>>.openai.azure.com
+basePath: /openai/deployments/
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /<<YOUR MODEL NAME>>/completions:
+    post:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: id
+              object:
+                type: string
+                description: object
+              created:
+                type: integer
+                format: int32
+                description: created
+              model:
+                type: string
+                description: model
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: text
+                    index:
+                      type: integer
+                      format: int32
+                      description: index
+                    finish_reason:
+                      type: string
+                      description: finish_reason
+                    logprobs:
+                      type: string
+                      description: logprobs
+                description: choices
+              usage:
+                type: object
+                properties:
+                  completion_tokens:
+                    type: integer
+                    format: int32
+                    description: completion_tokens
+                  prompt_tokens:
+                    type: integer
+                    format: int32
+                    description: prompt_tokens
+                  total_tokens:
+                    type: integer
+                    format: int32
+                    description: total_tokens
+                description: usage
+          headers:
+            Cache-Control:
+              description: Cache-Control
+              type: string
+            Content-Length:
+              description: Content-Length
+              type: integer
+            Content-Type:
+              description: Content-Type
+              type: string
+            Access-Control-Allow-Origin:
+              description: Access-Control-Allow-Origin
+              type: string
+            apim-request-id:
+              description: apim-request-id
+              type: string
+            Strict-Transport-Security:
+              description: Strict-Transport-Security
+              type: string
+            x-ms-region:
+              description: x-ms-region
+              type: string
+            x-content-type-options:
+              description: x-content-type-options
+              type: string
+            Openai-Model:
+              description: Openai-Model
+              type: string
+            Openai-Processing-Ms:
+              description: Openai-Processing-Ms
+              type: number
+            X-Accel-Buffering:
+              description: X-Accel-Buffering
+              type: string
+            X-Ms-Client-Request-Id:
+              description: X-Ms-Client-Request-Id
+              type: string
+            X-Request-Id:
+              description: X-Request-Id
+              type: string
+            Date:
+              description: Date
+              type: string
+      summary: Completes your prompt
+      operationId: Completion
+      x-ms-visibility: important
+      parameters:
+        - name: api-version
+          in: query
+          required: true
+          type: string
+          default: '2022-12-01'
+          enum:
+            - '2022-12-01'
+            - '2023-05-15'
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          x-ms-visibility: internal
+        - name: api-key
+          in: header
+          required: true
+          type: string
+          default: <<YOUR KEY HERE>>
+          x-ms-visibility: internal
+        - name: Host
+          in: header
+          required: true
+          type: string
+          default: <<YOURNAME_HERE>>.openai.azure.com
+          enum:
+            - <<YOURNAME_HERE>>..openai.azure.com
+        - name: Connection
+          in: header
+          required: true
+          type: string
+          default: keep-alive
+          x-ms-visibility: important
+          enum:
+            - keep-alive
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              prompt:
+                type: string
+                description: prompt
+                title: ''
+                default: What is the LAT:LONG of Georgia in the United States?
+                x-ms-visibility: important
+              max_tokens:
+                type: integer
+                format: int32
+                description: max_tokens
+                title: ''
+                x-ms-visibility: important
+                default: 350
+              temperature:
+                type: number
+                format: float
+                description: temperature
+                title: ''
+                default: 0.7
+                x-ms-visibility: important
+              frequency_penalty:
+                type: integer
+                format: int32
+                description: frequency_penalty
+                title: ''
+                x-ms-visibility: important
+                enum:
+                  - 0
+              presence_penalty:
+                type: integer
+                format: int32
+                description: presence_penalty
+                title: ''
+                x-ms-visibility: important
+                enum:
+                  - 0
+              top_p:
+                type: integer
+                format: int32
+                description: top_p
+                title: ''
+                x-ms-visibility: important
+                default: 1
+              best_of:
+                type: integer
+                format: int32
+                description: best_of
+                title: ''
+                default: 1
+                x-ms-visibility: important
+              stop:
+                type: string
+                description: stop
+                title: ''
+                default: 'null'
+                x-ms-visibility: important
+                enum:
+                  - 'null'
+            required:
+              - best_of
+              - frequency_penalty
+              - max_tokens
+              - presence_penalty
+              - prompt
+              - stop
+              - temperature
+              - top_p
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions: {}
+tags: []
+x-ms-connector-metadata:
+  - propertyName: Website
+    propertyValue: https://azure.microsoft.com/en-us/products/cognitive-services/openai-service
+  - propertyName: Privacy policy
+    propertyValue: https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy
+  - propertyName: Categories
+    propertyValue: AI
