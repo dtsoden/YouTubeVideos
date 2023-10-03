@@ -448,6 +448,44 @@ paths:
               - input
               - instruction
               - model
+  /v1/audio/transcriptions:
+    post:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              text:
+                type: string
+                description: text
+      summary: Speech to Text
+      operationId: Speech2Text
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: Content-Type
+          in: header
+          type: string
+          required: true
+          default: multipart/form-data
+          x-ms-visibility: internal
+        - name: file
+          in: formData
+          type: file
+          required: true
+        - name: filename
+          in: formData
+          type: string
+          required: true
+          default: audio.wbmp
+          x-ms-visibility: internal
+        - name: model
+          in: formData
+          type: string
+          required: true
+          default: whisper-1
+          x-ms-visibility: internal
 definitions: {}
 parameters: {}
 responses: {}
