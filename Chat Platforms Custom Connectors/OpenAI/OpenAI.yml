@@ -3,7 +3,8 @@ info:
   title: OpenAI
   description: >-
     Connect to the OpenAI API and use the Power of GPT3, API key must be entered
-    as "Bearer YOUR_API_KEY"
+    as "Bearer YOUR_API_KEY". This connector uses a POLICY named AUTHORIZATION
+    to set the API KEY globally.
   version: '1.0'
   contact:
     name: David Soden & Robin Rosengrün
@@ -67,6 +68,63 @@ paths:
                         Reason why the text finished (stop condition / natural
                         end / length)
                 description: Returned Completion(s)
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: id
+              object:
+                type: string
+                description: object
+              created:
+                type: integer
+                format: int32
+                description: created
+              model:
+                type: string
+                description: model
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    index:
+                      type: integer
+                      format: int32
+                      description: index
+                    message:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                          description: role
+                        content:
+                          type: string
+                          description: content
+                      description: message
+                    finish_reason:
+                      type: string
+                      description: finish_reason
+                description: choices
+              usage:
+                type: object
+                properties:
+                  prompt_tokens:
+                    type: integer
+                    format: int32
+                    description: prompt_tokens
+                  completion_tokens:
+                    type: integer
+                    format: int32
+                    description: completion_tokens
+                  total_tokens:
+                    type: integer
+                    format: int32
+                    description: total_tokens
+                description: usage
       summary: GPT3 Completes your prompt
       description: GPT3 Completes your prompt
       operationId: Completion
@@ -366,7 +424,8 @@ paths:
               - input
             x-ms-visibility: important
           x-ms-visibility: important
-  /v1/edits:
+  /v1/edits: {}
+  /v1/chat/completions:
     post:
       responses:
         default:
@@ -374,6 +433,9 @@ paths:
           schema:
             type: object
             properties:
+              id:
+                type: string
+                description: id
               object:
                 type: string
                 description: object
@@ -381,18 +443,31 @@ paths:
                 type: integer
                 format: int32
                 description: created
+              model:
+                type: string
+                description: model
               choices:
                 type: array
                 items:
                   type: object
                   properties:
-                    text:
-                      type: string
-                      description: text
                     index:
                       type: integer
                       format: int32
                       description: index
+                    message:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                          description: role
+                        content:
+                          type: string
+                          description: content
+                      description: message
+                    finish_reason:
+                      type: string
+                      description: finish_reason
                 description: choices
               usage:
                 type: object
@@ -410,44 +485,18 @@ paths:
                     format: int32
                     description: total_tokens
                 description: usage
-      summary: Edits
-      description: >-
-        Given a prompt and an instruction, the model will return an edited
-        version of the prompt.
-      operationId: Edits
+      summary: Chat
+      operationId: Chat
+      x-ms-visibility: important
       parameters:
-        - name: Content-Type
-          in: header
-          required: true
-          type: string
-          default: application/json
-          x-ms-visibility: internal
         - name: body
           in: body
           required: true
           schema:
             type: object
-            properties:
-              model:
-                type: string
-                description: model
-                title: Model
-                default: text-davinci-edit-001
-                x-ms-visibility: internal
-              input:
-                type: string
-                description: The input text to use as a starting point for the edit.
-                title: Input
-                default: What day of the wek is it?
-              instruction:
-                type: string
-                description: The instruction that tells the model how to edit the prompt.
-                title: Intstruction
-                default: Fix the spelling mistakes
-            required:
-              - input
-              - instruction
-              - model
+            properties: {}
+            x-ms-visibility: important
+          x-ms-visibility: important
   /v1/audio/transcriptions:
     post:
       responses:
