@@ -535,6 +535,110 @@ paths:
           required: true
           default: whisper-1
           x-ms-visibility: internal
+  /v1/completions:
+    post:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: id
+              object:
+                type: string
+                description: object
+              created:
+                type: integer
+                format: int32
+                description: created
+              model:
+                type: string
+                description: model
+              choices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: text
+                    index:
+                      type: integer
+                      format: int32
+                      description: index
+                    logprobs:
+                      type: string
+                      description: logprobs
+                    finish_reason:
+                      type: string
+                      description: finish_reason
+                description: choices
+              usage:
+                type: object
+                properties:
+                  prompt_tokens:
+                    type: integer
+                    format: int32
+                    description: prompt_tokens
+                  completion_tokens:
+                    type: integer
+                    format: int32
+                    description: completion_tokens
+                  total_tokens:
+                    type: integer
+                    format: int32
+                    description: total_tokens
+                description: usage
+      summary: gpt-turbo-instruct
+      operationId: gpt-turbo-instruct
+      x-ms-visibility: important
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              model:
+                type: string
+                description: model
+                title: ''
+                x-ms-visibility: internal
+                default: gpt-3.5-turbo-instruct
+                enum:
+                  - gpt-3.5-turbo-instruct
+              prompt:
+                type: string
+                description: prompt
+                title: ''
+                x-ms-visibility: important
+              max_tokens:
+                type: integer
+                format: int32
+                description: max_tokens
+                title: ''
+                default: 500
+              temperature:
+                type: number
+                format: float
+                description: temperature
+                title: ''
+                default: 0.7
+            required:
+              - max_tokens
+              - temperature
+              - prompt
+              - model
+            x-ms-visibility: important
+          x-ms-visibility: important
 definitions: {}
 parameters: {}
 responses: {}
