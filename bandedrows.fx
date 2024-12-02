@@ -1,0 +1,10 @@
+With(
+        {record:[table]},
+        ForAll(
+                Sequence(CountRows(record)), 
+                Patch(
+                        Last(FirstN(record,Value)),
+                        {rowNumber:Value}
+                    )
+        )
+)
