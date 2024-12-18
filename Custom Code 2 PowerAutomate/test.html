@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1B0A50;
+            color: white;
+        }
+
+        header img {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            margin: 10px 0 5px;
+            font-size: 24px;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        main p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #581968;
+        }
+
+        button {
+            background-color: #581968;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #F4A9FE;
+        }
+
+        #response-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #response-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        #response-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1B0A50;
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const responseMessage = document.getElementById('response-message');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                try {
+                    const formData = new FormData(form);
+                    const params = new URLSearchParams();
+                    for (const [key, value] of formData.entries()) {
+                        params.append(key, value);
+                    }
+
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: params.toString(),
+                    });
+
+                    if (response.ok) {
+                        responseMessage.textContent = "Form submitted successfully.";
+                        responseMessage.className = "success";
+                    } else {
+                        responseMessage.textContent = "Sorry, we cannot process this form at this time.";
+                        responseMessage.className = "error";
+                    }
+                } catch (error) {
+                    responseMessage.textContent = "Sorry, we cannot process this form at this time.";
+                    responseMessage.className = "error";
+                }
+
+                responseMessage.style.display = "block";
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <img src="240.png" alt="Company Logo">
+        <h1>Contact Us</h1>
+    </header>
+
+    <main>
+        <p>We'd love to hear from you! Please fill out the form below, and we'll get back to you as soon as possible.</p>
+        <form action="https://prod-12.westus.logic.azure.com:443/workflows/b3d9b85300da4b91857b5283828e4285/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=YM05C0TueVzsmXQmZng_y_o-5RnbP3nXipeTUE1Rjso" method="POST">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" rows="5" placeholder="Your comments or questions" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="response-message"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Info. All Rights Reserved.</p>
+        <p>Visit us online at https://www.yoursite.com</p>
+    </footer>
+</body>
+</html>
