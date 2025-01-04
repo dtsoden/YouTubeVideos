@@ -1,0 +1,414 @@
+<!--
+  This application is written by"
+    Author: David Soden
+    Contact: https://davidsoden.com
+    YouTube: https://www.youtube.com/user/dtsoden
+    LinkedIn: https://www.linkedin.com/in/davidtsoden
+    Buy the Book: https://www.amazon.com/dp/B0DPG4XSBS
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finally, AI for Everyone</title>
+  <style>
+    :root {
+      --primary-color: #1a1a2e;
+      --secondary-color: #16213e;
+      --accent-color: #0f3460;
+      --highlight-color: #e94560;
+      --background-color: #9b9b9b;
+      --text-color: #ffffff;
+      --user-bg: #6c63ff;
+      --ai-bg: #e94560;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--background-color);
+      color: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      background-image: url('img/bgimage.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: auto;
+  }
+
+
+    .loading-indicator {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .loading-indicator img {
+      width: 400px;
+      height: 300px;
+    }
+
+    .chat-header {
+      margin-top: 10px;
+      background: var(--primary-color);
+      color: var(--text-color);
+      padding: 15px;
+      width: 80%;
+      max-width: 900px;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      border-radius: 8px;
+    }
+
+    .chat-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .chat-header h1 {
+      font-size: 20px;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .chat-header a {
+      color: var(--highlight-color);
+      text-decoration: none;
+    }
+
+    .chat-header button {
+      background: var(--highlight-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .chat-header button:hover {
+      background: #ff2b4e;
+    }
+
+    .chat-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 80px; /* Space for fixed header */
+      margin-bottom: 160px; /* Space for fixed input and footer */
+      overflow: hidden;
+      width: 80%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      background: transparent;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px; /* Space between chat-messages and chat-input */
+      margin-top: 10px;
+    }
+
+    .chat-messages.has-messages {
+      background: var(--secondary-color);
+    }
+
+    .chat-message {
+      max-width: 80%;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background: var(--user-bg);
+      color: var(--text-color);
+      align-self: flex-end;
+    }
+
+    .ai-message {
+      background: var(--ai-bg);
+      color: var(--text-color);
+      align-self: flex-start;
+    }
+
+    .chat-input {
+      background: var(--primary-color);
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 900px;
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .chat-input textarea {
+      flex-grow: 1;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+      outline: none;
+      height: 50px;
+      color: var(--primary-color);
+    }
+
+    .chat-input button {
+      background: var(--highlight-color);
+      color: var(--text-color);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .chat-input button:hover {
+      background: #ff2b4e;
+    }
+
+    .chat-footer {
+      background: var(--primary-color);
+      color: var(--text-color);
+      padding: 10px;
+      width: 80%;
+      max-width: 910px;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .chat-footer a {
+      color: var(--highlight-color);
+      text-decoration: none;
+    }
+
+    .chat-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      .chat-header,
+      .chat-footer,
+      .chat-input {
+        width: 90%;
+      }
+
+      .chat-header h1 {
+        font-size: 18px;
+      }
+
+      .chat-input textarea {
+        font-size: 14px;
+      }
+
+      .chat-input button {
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .chat-header,
+      .chat-footer,
+      .chat-input {
+        width: 95%;
+      }
+
+      .chat-header h1 {
+        font-size: 16px;
+      }
+
+      .chat-input textarea {
+        font-size: 12px;
+      }
+
+      .chat-input button {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-header">
+    <img src="img/lmstudio.png" alt="Logo">
+    <h1><a href="https://www.amazon.com/Finally-Everyone-Hands-Step-Step/dp/B0DPG4XSBS" target="_blank">Finally, AI for Everyone</a></h1>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="loading-indicator" id="loadingIndicator">
+    <img src="img/loading.gif" alt="Loading...">
+  </div>
+  <div class="chat-container">
+    <div class="chat-messages" id="chatMessages"></div>
+  </div>
+  <div class="chat-input">
+    <textarea id="userInput" rows="1" placeholder="Type your message..."></textarea>
+    <button id="send">Send</button>
+  </div>
+  <div class="chat-footer">
+    <a href="https://davidsoden.com" target="_blank">&copy; 2025 David Soden</a><br>
+    <a href="https://lmstudio.ai" target="_blank">Powered by LM Studio AI</a>
+  </div>
+
+  <script>
+    const apiUrl = 'http://localhost:1234/v1/chat/completions'; // change to your url --------------------------------------------------- <<<< LOOK ******
+    const dbKey = 'chatHistory';
+
+// Use the browsers local database feature and story the conversation locally in a structured way
+    function saveToDb(messages) {
+      localStorage.setItem(dbKey, JSON.stringify(messages));
+    }
+
+    function getFromDb() {
+      return JSON.parse(localStorage.getItem(dbKey)) || [];
+    }
+
+    function resetDb() {
+      localStorage.removeItem(dbKey);
+    }
+
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('send');
+    const resetButton = document.getElementById('reset');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+
+    let messages = getFromDb();
+
+    function renderMessages() {
+      chatMessages.innerHTML = '';
+      if (messages.length > 0) {
+        chatMessages.classList.add('has-messages');
+      } else {
+        chatMessages.classList.remove('has-messages');
+      }
+
+      messages.forEach(msg => {
+        const messageEl = document.createElement('div');
+        messageEl.classList.add('chat-message', msg.role === 'user' ? 'user-message' : 'ai-message');
+
+        if (msg.role === 'assistant') {
+          messageEl.innerHTML = sanitizeHtml(msg.content);
+        } else {
+          messageEl.textContent = msg.content;
+        }
+
+        chatMessages.appendChild(messageEl);
+      });
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function sanitizeHtml(html) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
+      const scripts = tempDiv.querySelectorAll('script');
+      scripts.forEach(script => script.remove());
+      return tempDiv.innerHTML;
+    }
+
+    async function sendMessage() {
+      const userMessage = userInput.value.trim();
+      if (!userMessage) return;
+
+      messages.push({ role: 'user', content: userMessage });
+      saveToDb(messages);
+      renderMessages();
+      userInput.value = '';
+
+      const systemMessage = {
+        role: 'system',
+        content: 'ALWAYS Format responses in html. NEVER EVER EVER USE ANY MARKDOWN in your reponse.' // change the prompt here-- <<<< LOOK ******
+      };
+
+      const payload = {
+        model: 'meta-llama-3.1-8b-instruct', //change here to your model ------------------------------------------------------- <<<< LOOK ******
+        messages: [systemMessage, ...messages],
+        temperature: 0.7,
+        max_tokens: -1,
+        stream: false
+      };
+
+      try {
+        loadingIndicator.style.display = 'block';
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const aiResponse = data.choices[0]?.message?.content || "Error: No response";
+          messages.push({ role: 'assistant', content: aiResponse });
+          saveToDb(messages);
+          renderMessages();
+        } else {
+          throw new Error('API error');
+        }
+      } catch (error) {
+        alert('Error communicating with AI: ' + error.message);
+      } finally {
+        loadingIndicator.style.display = 'none';
+      }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    resetButton.addEventListener('click', () => {
+      messages = [];
+      resetDb();
+      renderMessages();
+    });
+
+    renderMessages();
+  </script>
+</body>
+</html>
