@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">swagger: '2.0'</p>
+<p class="p1">info:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>title: OpenAI Responses API Connector</p>
+<p class="p1"><span class="Apple-converted-space">  </span>description: &gt;-</p>
+<p class="p1"><span class="Apple-converted-space">    </span>Custom connector for OpenAI Responses API with text generation and reasoning</p>
+<p class="p1"><span class="Apple-converted-space">    </span>capabilities</p>
+<p class="p1"><span class="Apple-converted-space">  </span>version: 1.0.0</p>
+<p class="p1">host: api.openai.com</p>
+<p class="p1">basePath: /v1</p>
+<p class="p1">schemes:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- https</p>
+<p class="p1">securityDefinitions:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>api_key:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>type: apiKey</p>
+<p class="p1"><span class="Apple-converted-space">    </span>in: header</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name: Authorization</p>
+<p class="p1">security:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- api_key: []</p>
+<p class="p1">produces:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- application/json</p>
+<p class="p1">consumes:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>- application/json</p>
+<p class="p1">paths:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>/responses:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>post:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>responses:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>default:</p>
+<p class="p1"><span class="Apple-converted-space">          </span>description: default</p>
+<p class="p1"><span class="Apple-converted-space">          </span>schema:</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">            </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: id</p>
+<p class="p1"><span class="Apple-converted-space">              </span>object:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: object</p>
+<p class="p1"><span class="Apple-converted-space">              </span>created_at:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: created_at</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: status</p>
+<p class="p1"><span class="Apple-converted-space">              </span>error:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: error</p>
+<p class="p1"><span class="Apple-converted-space">              </span>incomplete_details:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: incomplete_details</p>
+<p class="p1"><span class="Apple-converted-space">              </span>instructions:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: instructions</p>
+<p class="p1"><span class="Apple-converted-space">              </span>max_output_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: max_output_tokens</p>
+<p class="p1"><span class="Apple-converted-space">              </span>model:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: model</p>
+<p class="p1"><span class="Apple-converted-space">              </span>output:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: array</p>
+<p class="p1"><span class="Apple-converted-space">                </span>items:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: type</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>id:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: id</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>status:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: status</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>role:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: role</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>content:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: array</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>items:</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>type:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>description: type</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>text:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>description: text</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>annotations:</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>type: array</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>items: {}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>description: annotations</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: content</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: output</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parallel_tool_calls:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: boolean</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: parallel_tool_calls</p>
+<p class="p1"><span class="Apple-converted-space">              </span>previous_response_id:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: previous_response_id</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reasoning:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>effort:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: effort</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>summary:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: summary</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: reasoning</p>
+<p class="p1"><span class="Apple-converted-space">              </span>store:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: boolean</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: store</p>
+<p class="p1"><span class="Apple-converted-space">              </span>temperature:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: temperature</p>
+<p class="p1"><span class="Apple-converted-space">              </span>text:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>format:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type:</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>description: type</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: format</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: text</p>
+<p class="p1"><span class="Apple-converted-space">              </span>tool_choice:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: tool_choice</p>
+<p class="p1"><span class="Apple-converted-space">              </span>tools:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: array</p>
+<p class="p1"><span class="Apple-converted-space">                </span>items: {}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: tools</p>
+<p class="p1"><span class="Apple-converted-space">              </span>top_p:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: top_p</p>
+<p class="p1"><span class="Apple-converted-space">              </span>truncation:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: truncation</p>
+<p class="p1"><span class="Apple-converted-space">              </span>usage:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>input_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: input_tokens</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>input_tokens_details:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>cached_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>description: cached_tokens</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: input_tokens_details</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>output_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: output_tokens</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>output_tokens_details:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>reasoning_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>description: reasoning_tokens</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: output_tokens_details</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>total_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: total_tokens</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: usage</p>
+<p class="p1"><span class="Apple-converted-space">              </span>user:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: user</p>
+<p class="p1"><span class="Apple-converted-space">              </span>metadata:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                </span>properties: {}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: metadata</p>
+<p class="p1"><span class="Apple-converted-space">      </span>summary: Create Response</p>
+<p class="p1"><span class="Apple-converted-space">      </span>description: Send a question, get an answer</p>
+<p class="p1"><span class="Apple-converted-space">      </span>operationId: CreateResonse</p>
+<p class="p1"><span class="Apple-converted-space">      </span>parameters:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- name: body</p>
+<p class="p1"><span class="Apple-converted-space">          </span>in: body</p>
+<p class="p1"><span class="Apple-converted-space">          </span>required: false</p>
+<p class="p1"><span class="Apple-converted-space">          </span>schema:</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">            </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">              </span>model:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: model</p>
+<p class="p1"><span class="Apple-converted-space">              </span>input:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: input</p>
+<p class="p1"><span class="Apple-converted-space">  </span>/responses/{response_id}:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>get:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>summary: Retrieve Response</p>
+<p class="p1"><span class="Apple-converted-space">      </span>description: Retrieves a previously created response by its ID</p>
+<p class="p1"><span class="Apple-converted-space">      </span>operationId: RetrieveResponse</p>
+<p class="p1"><span class="Apple-converted-space">      </span>x-ms-summary: Get Response by ID</p>
+<p class="p1"><span class="Apple-converted-space">      </span>x-ms-visibility: advanced</p>
+<p class="p1"><span class="Apple-converted-space">      </span>parameters:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>- name: response_id</p>
+<p class="p1"><span class="Apple-converted-space">          </span>in: path</p>
+<p class="p1"><span class="Apple-converted-space">          </span>required: true</p>
+<p class="p1"><span class="Apple-converted-space">          </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">          </span>description: The ID of the response to retrieve</p>
+<p class="p1"><span class="Apple-converted-space">          </span>x-ms-summary: Response ID</p>
+<p class="p1"><span class="Apple-converted-space">          </span>x-ms-url-encoding: single</p>
+<p class="p1"><span class="Apple-converted-space">      </span>responses:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'200':</p>
+<p class="p1"><span class="Apple-converted-space">          </span>description: Response retrieved successfully</p>
+<p class="p1"><span class="Apple-converted-space">          </span>schema:</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">            </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: Unique identifier for the response</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Response ID</p>
+<p class="p1"><span class="Apple-converted-space">              </span>object:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: Object type (always 'response')</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Object Type</p>
+<p class="p1"><span class="Apple-converted-space">              </span>created_at:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: number</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: Unix timestamp when the response was created</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Created At</p>
+<p class="p1"><span class="Apple-converted-space">              </span>model:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: The model used for the response</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Model Used</p>
+<p class="p1"><span class="Apple-converted-space">              </span>output_text:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: The generated text output</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Generated Text</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: Status of the response generation</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Status</p>
+<p class="p1"><span class="Apple-converted-space">              </span>usage:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: Token usage statistics</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x-ms-summary: Token Usage</p>
+<p class="p1"><span class="Apple-converted-space">                </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>input_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: Number of input tokens used</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x-ms-summary: Input Tokens</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>output_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: Number of output tokens generated</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x-ms-summary: Output Tokens</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>total_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: Total tokens used</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x-ms-summary: Total Tokens</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'404':</p>
+<p class="p1"><span class="Apple-converted-space">          </span>description: Response not found</p>
+<p class="p1"><span class="Apple-converted-space">          </span>schema:</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">            </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">              </span>error:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>message:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: Not found error message</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x-ms-summary: Error Message</p>
+<p class="p1"><span class="Apple-converted-space">  </span>/models:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>get:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>responses:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>default:</p>
+<p class="p1"><span class="Apple-converted-space">          </span>description: default</p>
+<p class="p1"><span class="Apple-converted-space">          </span>schema:</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">            </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">              </span>object:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: object</p>
+<p class="p1"><span class="Apple-converted-space">              </span>data:</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: array</p>
+<p class="p1"><span class="Apple-converted-space">                </span>items:</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>id:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: id</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>object:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: object</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>created:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>format: int32</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: created</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>owned_by:</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>description: owned_by</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: data</p>
+<p class="p1"><span class="Apple-converted-space">      </span>summary: Get Models</p>
+<p class="p1"><span class="Apple-converted-space">      </span>description: Gets the list of Available models</p>
+<p class="p1"><span class="Apple-converted-space">      </span>operationId: GetModels</p>
+<p class="p1"><span class="Apple-converted-space">      </span>parameters: []</p>
+<p class="p1">definitions:</p>
+<p class="p1"><span class="Apple-converted-space">  </span>ResponseMessage:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>id:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Message identifier</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Message ID</p>
+<p class="p1"><span class="Apple-converted-space">      </span>role:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Role of the message sender</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Role</p>
+<p class="p1"><span class="Apple-converted-space">      </span>content:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: array</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Message content array</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Content</p>
+<p class="p1"><span class="Apple-converted-space">        </span>items:</p>
+<p class="p1"><span class="Apple-converted-space">          </span>$ref: '#/definitions/MessageContent'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>MessageContent:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>type:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Type of content</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Content Type</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: string</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Text content</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Text</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Usage:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>input_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Input tokens used</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Input Tokens</p>
+<p class="p1"><span class="Apple-converted-space">      </span>output_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Output tokens generated</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Output Tokens</p>
+<p class="p1"><span class="Apple-converted-space">      </span>total_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Total tokens used</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Total Tokens</p>
+<p class="p1"><span class="Apple-converted-space">      </span>output_tokens_details:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$ref: '#/definitions/OutputTokenDetails'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>OutputTokenDetails:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>type: object</p>
+<p class="p1"><span class="Apple-converted-space">    </span>properties:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>reasoning_tokens:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: integer</p>
+<p class="p1"><span class="Apple-converted-space">        </span>description: Reasoning tokens used</p>
+<p class="p1"><span class="Apple-converted-space">        </span>x-ms-summary: Reasoning Tokens</p>
+</body>
+</html>
