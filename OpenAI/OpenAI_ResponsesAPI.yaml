@@ -385,6 +385,14 @@ paths:
               store:
                 type: boolean
                 description: store
+                title: ''
+                enum:
+                  - ''
+                  - true
+                  - false
+              instructions:
+                type: string
+                description: instructions
 definitions: {}
 parameters: {}
 responses: {}
